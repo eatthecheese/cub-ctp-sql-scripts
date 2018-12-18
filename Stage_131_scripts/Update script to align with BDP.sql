@@ -23,10 +23,10 @@ UPDATE "ABP_MAIN"."LOCALE" set description = 'Waratah Mills LR', inserted_dtm = 
 UPDATE "ABP_MAIN"."LOCALE" set description = 'Arlington LR', inserted_dtm = sys_extract_utc(systimestamp) where locale_id = '821';
 UPDATE "ABP_MAIN"."LOCALE" set description = 'Dulwich Grove LR', inserted_dtm = sys_extract_utc(systimestamp) where locale_id = '822';
 UPDATE "ABP_MAIN"."LOCALE" set description = 'Dulwich Hill LR', inserted_dtm = sys_extract_utc(systimestamp) where locale_id = '823';
-UPDATE "ABP_MAIN"."LOCALE" set description = 'Circular Quay, No. 2 Wharf', inserted_dtm = sys_extract_utc(systimestamp) where locale_id = '935';
-UPDATE "ABP_MAIN"."LOCALE" set description = 'Circular Quay, No. 3 Wharf', inserted_dtm = sys_extract_utc(systimestamp) where locale_id = '936';
-UPDATE "ABP_MAIN"."LOCALE" set description = 'Circular Quay, No. 4 Wharf', inserted_dtm = sys_extract_utc(systimestamp) where locale_id = '937';
-UPDATE "ABP_MAIN"."LOCALE" set description = 'Circular Quay, No. 5 Wharf', inserted_dtm = sys_extract_utc(systimestamp) where locale_id = '938';
+UPDATE "ABP_MAIN"."LOCALE" set description = 'Circular Quay No. 2 Wharf', inserted_dtm = sys_extract_utc(systimestamp) where locale_id = '935';
+UPDATE "ABP_MAIN"."LOCALE" set description = 'Circular Quay No. 3 Wharf', inserted_dtm = sys_extract_utc(systimestamp) where locale_id = '936';
+UPDATE "ABP_MAIN"."LOCALE" set description = 'Circular Quay No. 4 Wharf', inserted_dtm = sys_extract_utc(systimestamp) where locale_id = '937';
+UPDATE "ABP_MAIN"."LOCALE" set description = 'Circular Quay No. 5 Wharf', inserted_dtm = sys_extract_utc(systimestamp) where locale_id = '938';
 UPDATE "ABP_MAIN"."LOCALE" set description = 'Manly Ferry Wharf', inserted_dtm = sys_extract_utc(systimestamp) where locale_id = '939';
 UPDATE "ABP_MAIN"."LOCALE" set description = 'Garden Island Ferry Wharf', inserted_dtm = sys_extract_utc(systimestamp) where locale_id = '943';
 UPDATE "ABP_MAIN"."LOCALE" set description = 'Cockatoo Island Ferry Wharf', inserted_dtm = sys_extract_utc(systimestamp) where locale_id = '944';
@@ -42,8 +42,8 @@ UPDATE "ABP_MAIN"."LOCALE" set description = 'Abbotsford Ferry Wharf', inserted_
 UPDATE "ABP_MAIN"."LOCALE" set description = 'Chiswick Ferry Wharf', inserted_dtm = sys_extract_utc(systimestamp) where locale_id = '956';
 UPDATE "ABP_MAIN"."LOCALE" set description = 'Drummoyne Ferry Wharf', inserted_dtm = sys_extract_utc(systimestamp) where locale_id = '957';
 UPDATE "ABP_MAIN"."LOCALE" set description = 'Huntleys Point Ferry Wharf', inserted_dtm = sys_extract_utc(systimestamp) where locale_id = '958';
-UPDATE "ABP_MAIN"."LOCALE" set description = 'Barangaroo, Wharf 1', inserted_dtm = sys_extract_utc(systimestamp) where locale_id = '959';
-UPDATE "ABP_MAIN"."LOCALE" set description = 'Barangaroo, Wharf 2', inserted_dtm = sys_extract_utc(systimestamp) where locale_id = '960';
+UPDATE "ABP_MAIN"."LOCALE" set description = 'Barangaroo Wharf 1', inserted_dtm = sys_extract_utc(systimestamp) where locale_id = '959';
+UPDATE "ABP_MAIN"."LOCALE" set description = 'Barangaroo Wharf 2', inserted_dtm = sys_extract_utc(systimestamp) where locale_id = '960';
 UPDATE "ABP_MAIN"."LOCALE" set description = 'McMahons Point Ferry Wharf', inserted_dtm = sys_extract_utc(systimestamp) where locale_id = '961';
 UPDATE "ABP_MAIN"."LOCALE" set description = 'North Sydney Ferry Wharf', inserted_dtm = sys_extract_utc(systimestamp) where locale_id = '962';
 UPDATE "ABP_MAIN"."LOCALE" set description = 'Milsons Point Ferry Wharf', inserted_dtm = sys_extract_utc(systimestamp) where locale_id = '963';
