@@ -1,0 +1,6 @@
+select * from emv.ETS_RAIL_APPORTIONMENT_MATRIX;
+
+select * from emv.apportionment_rule_set;
+
+select * from EMV.ETS_OPERATOR
+where NLC = 562;

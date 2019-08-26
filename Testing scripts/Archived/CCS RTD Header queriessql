@@ -1,0 +1,41 @@
+select *
+from coda.oas_stmdocline
+where rownum < 100
+;
+
+select * from tdm_rtd_header 
+where rownum < 100
+and hostnlc = 191
+order by batchid desc;
+
+select daykey, transactiontime, batchid, transactiontype, hostplinthnumber, hostnlc, transportmode, locationname, a.*
+from tds_rtd_header a
+where hostnlc = 584
+--transactiontype = 72 
+and daykey = 14156
+and transportmode in ('RAIL', 'FERRY')
+order by batchid desc;
+
+select
+    rh.batchid
+    ,count(*)
+    ,(  select oi.amendeddate
+        from cdsprod1.odr_inputfiles OI
+        where oi.batchid = rh.batchid
+    ) AS BATCHTIME
+from cdsprod1.tds_rtd_header rh
+where rh.transactiontype = 1
+and rh.hostnlc = 9999
+group by rh.batchid
+order by rh.batchid desc 
+;
+
+-- 77 >>RTD Hardware and Software Identifiers
+-- 74 >>RTD Table Status
+-- 73 >>Smartcard Usage Statistics
+-- **72 >>RTD Power Fail Detected**
+-- 70 >>RTD Accounting Period
+-- 41 >>Rail/Ferry Tag-Off (PURSE)
+-- 44 >>Ferry Tag-On-Only (PURSE)
+-- 52 >>Rail/Ferry Tag-On REVERSAL (TICKET)
+-- 50 >>Rail/Ferry Tag-On (TICKET)

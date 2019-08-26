@@ -1,0 +1,9 @@
+-- Script 2. Details of RRNs with different amounts between ABP and CPA; 
+select bp.INSERTEDDTM+10/24 as dateofrecord,bp.bankcardpaymentid,bp.transitaccountid,bp.PGRETRIEVALREFNBR,bp.PGSETTLEMENTAMT as ABP_Amount,c.I004AMOUNTTRANSACTION as CPA_Amount from emv.bankcard_payment bp
+join emv.confirmation c on bp.pgretrievalrefnbr = c.I037RETRIEVALREFERENCENUM
+where bp.PGSETTLEMENTAMT != c.I004AMOUNTTRANSACTION
+-- BELOW SETS THE TRANSACTION DATE TO LOOK FOR
+and bp.inserteddtm +10/24 < trunc(TO_DATE('12/AUG/2019 00:00:00'),'DD')
+and bp.inserteddtm +10/24 >= trunc(TO_DATE('11/AUG/2019 00:00:00'),'DD')
+order by bankcardpaymentid desc
+;

@@ -1,0 +1,49 @@
+-- PLAYGROUND
+select *
+from RDD_BOARDINGLOCATION
+where ceaseddate > sysdate
+and transportmode = 'RAIL'
+order by NLC desc;
+
+-- LIST OF ACTIVE UNMAPPED ROUTES
+select * from CDSPROD1.RDD_BUSROUTEVARIANT
+where ceaseddate > sysdate and MAPPEDROUTE = 'N' 
+;
+
+-- GET COUNT OF ACTIVE UNMAPPED ROUTES
+select count(*) from CDSPROD1.RDD_BUSROUTEVARIANT
+where ceaseddate > sysdate and MAPPEDROUTE = 'N' 
+;
+
+select *
+from CDSPROD1.DD_JOURNEY_SEGMENT
+where TRANSPORTMODE = 'BUS'
+and daykey = 14370
+and routevariant = '5039-1';
+
+select *
+from CDSPROD1.DD_CARD_TRANSACTION
+where TRANSPORTMODE = 'BUS'
+and daykey = 14370
+and routevariant = '5039-1'; 
+
+select 
+  DAYKEY
+  ,SMARTCARDID
+  ,HOSTNLC
+  ,TSN
+  ,LOCATIONNAME
+  ,FIRSTENTRYXPOS
+  ,FIRSTENTRYYPOS
+  ,ROUTEVARIANT
+  ,BUSOPERATORID
+  ,DEPOTID
+  ,BUSID
+  ,DRIVERID
+  ,SHIFTID
+  ,BUSDRIVERCONSOLEID
+  ,BUSVALIDATORPOSITION
+  ,SUBSYSTEMID
+from CDSPROD1.DD_CARD_TRANSACTION
+where hostnlc = -1 and subsystemid !=4
+;

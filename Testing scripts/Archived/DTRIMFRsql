@@ -1,0 +1,92 @@
+SELECT a.daykey,a.smartcardid, a.sequencenocard, a.transactiontype, b.validationresultcode, b.validationtypecode,
+a.locationname, a.transportmode,  a.svadded, a.svbalance, b.fullentryadjustment, b.entryadjustment, b.dailycapped, b.firstentrytime, b.safadjustment, b.safdetails, b.unstartedexit,
+b. daykey, b.batchid, b.filerecordno, b.position, b.smartcardid, b.*
+--from tds_rtd_header a, tds_rtd_tag_ON_sv b
+from tdm_rtd_header a, tdm_rtd_tag_ON_sv b
+where a.smartcardid in 70013381
+--and a.daykey in (13343)
+and a.transactiontype = 40
+and (a.daykey=b.daykey)
+and (b.batchid=a.batchid and b.filerecordno=a.filerecordno
+and b.position=a.position and b.smartcardid=a.smartcardid)
+order by a.smartcardid desc, a.sequencenocard asc; -- Tap on for Rail/Ferry Purse Fare Logic
+
+SELECT a.daykey, a.smartcardid, a.sequencenocard, a.transactiontype, b.validationresultcode, b.validationtypecode, 
+a.locationname, a.transportmode, b.unstartedexit, a.svadded, a.svbalance, b.fullexitadjustment, b.exitadjustment, b.dailycapped, b.intermodaltransfertypecode, b.firstentrytime, b.firstentrynlc, b.saf, b.safdetails, b.safadjustment,
+b.transferflagexit, b. daykey, b.batchid, b.filerecordno, b.position,  b.smartcardid, b.foucount, b.distancebandcode, b.*
+from tdm_rtd_header a, tdm_rtd_tag_OFF_sv b
+--from tds_rtd_header a, tds_rtd_tag_OFF_sv b
+where a.smartcardid in (70013381) 
+--and a.daykey in (13341)
+and a.transactiontype = 41
+and (a.daykey=b.daykey)
+and (b.batchid=a.batchid and b.filerecordno=a.filerecordno
+and b.position=a.position and b.smartcardid=a.smartcardid)
+order by a.smartcardid desc, a.sequencenocard asc; -- Tap off for Rail/Ferry Purse Fare Logic
+
+SELECT a.daykey, a.smartcardid, a.sequencenocard, a.transactiontype, b.validationresultcode, b.validationtypecode,
+a.locationname, a.transportmode, b.unstartedexit, a.svadded, a.svbalance, b.fullentryadjustment, b.entryadjustment, b.dailycapped,b.firstentrynlc,
+b. daykey, b.batchid, b.filerecordno, b.position, b.smartcardid, b.*
+--from tds_rtd_header a, tds_rtd_tag_on_only_sv b
+from tdm_rtd_header a, tdm_rtd_tag_on_only_sv b
+where a.smartcardid in (70013371)
+--and a.daykey in (13294)
+and a.transactiontype = 44
+and (a.daykey=b.daykey)
+and (b.batchid=a.batchid and b.filerecordno=a.filerecordno
+and b.position=a.position and b.smartcardid=a.smartcardid)
+order by a.smartcardid desc, a.sequencenocard desc; -- Tap on only for Purse Fare Logic
+
+SELECT a.daykey, a.batchid, a.filerecordno, a.position, a.smartcardid, a.sequencenocard, a.transactiontype, b.validationresultcode, b.validationtypecode,
+a.locationname, a.transportmode, a.svadded, a.svbalance, b.fullentryadjustment, b.entryadjustment, 
+b. daykey, b.batchid, b.filerecordno, b.position, b.smartcardid, b.*
+--from tds_rtd_header a, tds_rtd_tag_ON_sv_rev b
+from tdm_rtd_header a, tdm_rtd_tag_ON_sv_rev b
+where a.smartcardid in (70202998) and a.daykey in (13289)
+and a.transactiontype = 43
+and (a.daykey=b.daykey)
+and (b.batchid=a.batchid and b.filerecordno=a.filerecordno
+and b.position=a.position and b.smartcardid=a.smartcardid)
+order by a.smartcardid desc, a.sequencenocard desc; -- Tap on reversal for Rail/Ferry Purse Fare Logic
+
+SELECT a.daykey, a.smartcardid, a.sequencenocard, a.transactiontype, b.validationresultcode, b.validationtypecode, a.routevariant,
+a.locationname, a.transportmode, a.svadded, a.svbalance, b.fullentryadjustment, b.entryadjustment, b.transferflagentry, b.firstentrytime,
+b. daykey, b.batchid, b.filerecordno, b.position, b.smartcardid, b.*
+--from tds_rtd_header a, tds_rtd_tag_ON_bus_sv b
+from tdm_rtd_header a, tdm_rtd_tag_ON_bus_sv b
+where a.smartcardid in (70013400)
+--and a.daykey in (13336) 
+and a.transactiontype = 45
+and (a.daykey=b.daykey)
+and (b.batchid=a.batchid and b.filerecordno=a.filerecordno
+and b.position=a.position and b.smartcardid=a.smartcardid)
+order by a.smartcardid desc, a.sequencenocard asc; -- Tap on for Bus Purse Fare Logic
+
+SELECT a.daykey, a.smartcardid, a.sequencenocard, a.transactiontype, b.validationresultcode, b.validationtypecode, a.routevariant,
+a.locationname, a.transportmode, a.svadded, a.svbalance, b.fullexitadjustment, b.exitadjustment, b.intermodaltransfertypecode, b.transferflagexit, b.firstentrytime, b.foucount,b.distancebandcode,
+b. daykey, b.batchid, b.filerecordno, b.position, b.smartcardid, b.*
+from tdm_rtd_header a, tdm_rtd_tag_OFF_bus_sv b
+--from tds_rtd_header a, tds_rtd_tag_OFF_bus_sv b
+where a.smartcardid in (70013400)
+--and a.daykey in (13292)
+and a.transactiontype = 46
+and (a.daykey=b.daykey)
+and (b.batchid=a.batchid and b.filerecordno=a.filerecordno
+and b.position=a.position and b.smartcardid=a.smartcardid)
+order by a.smartcardid desc, a.sequencenocard asc; -- Tap off for Bus Purse Fare Logic
+
+SELECT smartcardid, daykey, distancebandcode, transportmode, locationname, validationtypecode, intermodaltransfertypecode, intermodalfarereduction, fullfare, discountedfare, foudiscountkey, foucount ,
+transferflagentry, transferflagexit
+from dd_card_transaction
+where smartcardid in 70013381
+and daykey in 13357; -- Card Transaction validation
+
+--SELECT *
+--from dd_card_transaction
+--where smartcardid in 70202541
+--and daykey in 13342; -- Card Transaction validation
+
+SELECT daykey, smartcardid, transportmode, journeytype, originlocationname, destinationlocationname, foucount, fulladjustment, discountedadjustment, saf, foudiscountkey, intermodaltransfertypecode, intermodalfarereduction 
+from dd_journey_segment
+where smartcardid in 70013381
+and daykey in 13357; -- DD_JOURNEY_SEGMENT validation

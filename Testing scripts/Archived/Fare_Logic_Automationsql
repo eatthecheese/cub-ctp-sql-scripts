@@ -1,0 +1,14 @@
+SELECT a.daykey, a.smartcardid, a.sequencenocard, a.transactiontype, b.validationresultcode, b.validationtypecode, b.foudiscountkey, 
+a.locationname, a.transportmode, b.unstartedexit, a.svadded, a.svbalance, b.fullexitadjustment, b.exitadjustment, b.dailycapped, b.intermodaltransfertypecode, b.firstentrytime, b.firstentrynlc, b.saf, b.safdetails, b.safadjustment,
+b.transferflagexit, b. daykey, b.batchid, b.filerecordno, b.position,  b.smartcardid, b.foucount, b.distancebandcode, b.*
+from tdm_rtd_header a, tdm_rtd_tag_OFF_sv b
+--from tds_rtd_header a, tds_rtd_tag_OFF_sv b
+where a.smartcardid in (70013585) 
+and a.daykey >= (13652)
+--and a.locationname in ('Jubilee Park LR')
+--and a.transportmode in ('RAIL')
+and a.transactiontype in (41, 42, 43)
+and (a.daykey=b.daykey)
+and (b.batchid=a.batchid and b.filerecordno=a.filerecordno
+and b.position=a.position and b.smartcardid=a.smartcardid)
+order by a.smartcardid desc, a.sequencenocard asc; -- Tap off for Rail/Ferry Purse Fare Logic
