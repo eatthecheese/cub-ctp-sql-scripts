@@ -30,7 +30,7 @@ deny_list_detailed as (
             t3.next_transaction_dtm,
             t3.next_stop_id,
             t.default_fare_flag as default_fare,
-            (t.fare_due-t.calculated_fee) as fare_due,
+            t.fare_due,
             CASE t3.stop_id
               WHEN '11' THEN '1 - Sydney Ferries'
               WHEN '100' THEN '44 - Sydney Trains'
@@ -352,7 +352,14 @@ deny_list_detailed as (
               WHEN '561' THEN '44 - Sydney Trains'
               WHEN '562' THEN '44 - Sydney Trains'
               WHEN '574' THEN '45 - NSW TrainLink'
+              WHEN '581' THEN '37 - Metro Trains Sydney'
+              WHEN '582' THEN '37 - Metro Trains Sydney'
+              WHEN '583' THEN '37 - Metro Trains Sydney'
               WHEN '584' THEN '37 - Metro Trains Sydney'
+              WHEN '585' THEN '37 - Metro Trains Sydney'
+              WHEN '586' THEN '37 - Metro Trains Sydney'
+              WHEN '587' THEN '37 - Metro Trains Sydney'
+              WHEN '588' THEN '37 - Metro Trains Sydney'
               WHEN '625' THEN '44 - Sydney Trains'
               WHEN '626' THEN '44 - Sydney Trains'
               WHEN '801' THEN '46 - Sydney Light Rail'
@@ -389,7 +396,6 @@ deny_list_detailed as (
               WHEN '937' THEN '1 - Sydney Ferries'
               WHEN '938' THEN '1 - Sydney Ferries'
               WHEN '939' THEN '1 - Sydney Ferries'
-              --WHEN '940' THEN '1 - Sydney Ferries' - King Street Wharf. Removed NLC.
               WHEN '943' THEN '1 - Sydney Ferries'
               WHEN '944' THEN '1 - Sydney Ferries'
               WHEN '945' THEN '1 - Sydney Ferries'
@@ -558,7 +564,7 @@ data as (
             WHEN '188' THEN '44 - Sydney Trains'
             WHEN '189' THEN '44 - Sydney Trains'
             WHEN '190' THEN '44 - Sydney Trains'
-            WHEN '191' THEN '44 - Sydney Trains'
+            WHEN '191' THEN 'Chatswood'    -- Chatswood has conditionals for SMNW
             WHEN '192' THEN '44 - Sydney Trains'
             WHEN '193' THEN '44 - Sydney Trains'
             WHEN '194' THEN '44 - Sydney Trains'
@@ -592,7 +598,7 @@ data as (
             WHEN '232' THEN '44 - Sydney Trains'
             WHEN '233' THEN '44 - Sydney Trains'
             WHEN '234' THEN '44 - Sydney Trains'
-            WHEN '235' THEN '44 - Sydney Trains'
+            WHEN '235' THEN 'Epping'    -- Epping has conditionals for SMNW
             WHEN '236' THEN '44 - Sydney Trains'
             WHEN '237' THEN '45 - NSW TrainLink'
             WHEN '239' THEN '45 - NSW TrainLink'
@@ -815,7 +821,14 @@ data as (
             WHEN '561' THEN '44 - Sydney Trains'
             WHEN '562' THEN '44 - Sydney Trains'
             WHEN '574' THEN '45 - NSW TrainLink'
+            WHEN '581' THEN '37 - Metro Trains Sydney'
+            WHEN '582' THEN '37 - Metro Trains Sydney'
+            WHEN '583' THEN '37 - Metro Trains Sydney'
             WHEN '584' THEN '37 - Metro Trains Sydney'
+            WHEN '585' THEN '37 - Metro Trains Sydney'
+            WHEN '586' THEN '37 - Metro Trains Sydney'
+            WHEN '587' THEN '37 - Metro Trains Sydney'
+            WHEN '588' THEN '37 - Metro Trains Sydney'
             WHEN '625' THEN '44 - Sydney Trains'
             WHEN '626' THEN '44 - Sydney Trains'
             WHEN '801' THEN '46 - Sydney Light Rail'
@@ -852,7 +865,6 @@ data as (
             WHEN '937' THEN '1 - Sydney Ferries'
             WHEN '938' THEN '1 - Sydney Ferries'
             WHEN '939' THEN '1 - Sydney Ferries'
-            --WHEN '940' THEN '1 - Sydney Ferries' - King Street Wharf. Removed NLC.
             WHEN '943' THEN '1 - Sydney Ferries'
             WHEN '944' THEN '1 - Sydney Ferries'
             WHEN '945' THEN '1 - Sydney Ferries'
@@ -956,7 +968,7 @@ data as (
             WHEN '188' THEN '44 - Sydney Trains'
             WHEN '189' THEN '44 - Sydney Trains'
             WHEN '190' THEN '44 - Sydney Trains'
-            WHEN '191' THEN '44 - Sydney Trains'
+            WHEN '191' THEN 'Chatswood'    -- Chatswood has conditionals for SMNW
             WHEN '192' THEN '44 - Sydney Trains'
             WHEN '193' THEN '44 - Sydney Trains'
             WHEN '194' THEN '44 - Sydney Trains'
@@ -990,7 +1002,7 @@ data as (
             WHEN '232' THEN '44 - Sydney Trains'
             WHEN '233' THEN '44 - Sydney Trains'
             WHEN '234' THEN '44 - Sydney Trains'
-            WHEN '235' THEN '44 - Sydney Trains'
+            WHEN '235' THEN 'Epping'    -- Epping has conditionals for SMNW
             WHEN '236' THEN '44 - Sydney Trains'
             WHEN '237' THEN '45 - NSW TrainLink'
             WHEN '239' THEN '45 - NSW TrainLink'
@@ -1213,7 +1225,14 @@ data as (
             WHEN '561' THEN '44 - Sydney Trains'
             WHEN '562' THEN '44 - Sydney Trains'
             WHEN '574' THEN '45 - NSW TrainLink'
+            WHEN '581' THEN '37 - Metro Trains Sydney'
+            WHEN '582' THEN '37 - Metro Trains Sydney'
+            WHEN '583' THEN '37 - Metro Trains Sydney'
             WHEN '584' THEN '37 - Metro Trains Sydney'
+            WHEN '585' THEN '37 - Metro Trains Sydney'
+            WHEN '586' THEN '37 - Metro Trains Sydney'
+            WHEN '587' THEN '37 - Metro Trains Sydney'
+            WHEN '588' THEN '37 - Metro Trains Sydney'
             WHEN '625' THEN '44 - Sydney Trains'
             WHEN '626' THEN '44 - Sydney Trains'
             WHEN '801' THEN '46 - Sydney Light Rail'
@@ -1250,7 +1269,6 @@ data as (
             WHEN '937' THEN '1 - Sydney Ferries'
             WHEN '938' THEN '1 - Sydney Ferries'
             WHEN '939' THEN '1 - Sydney Ferries'
-            --WHEN '940' THEN '1 - Sydney Ferries' - King Street Wharf. Removed NLC.
             WHEN '943' THEN '1 - Sydney Ferries'
             WHEN '944' THEN '1 - Sydney Ferries'
             WHEN '945' THEN '1 - Sydney Ferries'
@@ -1321,9 +1339,26 @@ weekly_total as (
         data.entry_transaction_dtm +11/24 as day,        
         token_id, 
         transit_account_id,
-        (CASE 
-            WHEN Entry_ETS_Operator = '45 - NSW TrainLink' or Exit_ETS_Operator = '45 - NSW TrainLink' THEN '45 - NSW TrainLink'
-            ELSE Entry_ETS_Operator END) as Apportioned_ETS_Operator,
+        -- Apply apportionment logic
+        (CASE WHEN Entry_ETS_Operator = 'Epping' OR Entry_ETS_Operator = 'Chatswood' THEN
+                (CASE WHEN Exit_ETS_Operator = '44 - Sydney Trains' THEN '44 - Sydney Trains'
+                    WHEN Exit_ETS_Operator = '37 - Metro Trains Sydney' THEN '37 - Metro Trains Sydney'
+                    WHEN Exit_ETS_Operator = '45 - NSW TrainLink' THEN '45 - NSW TrainLink'
+                    WHEN Exit_ETS_Operator = 'Epping' OR Exit_ETS_Operator = 'Chatswood' THEN
+                        (CASE WHEN Entry_ETS_Operator <> Exit_ETS_Operator THEN '37 - Metro Trains Sydney'
+                        ELSE '44 - Sydney Trains' -- Default Fare logic
+                        END)
+                    ELSE 'OPERATOR NOT FOUND'
+                END)
+            WHEN Entry_ETS_Operator = '37 - Metro Trains Sydney' THEN '37 - Metro Trains Sydney'
+            WHEN Entry_ETS_Operator = '45 - NSW TrainLink' THEN '45 - NSW TrainLink'
+            WHEN Entry_ETS_Operator = '44 - Sydney Trains' THEN
+                (CASE WHEN Exit_ETS_Operator = '45 - NSW TrainLink' THEN '45 - NSW TrainLink'
+                ELSE '44 - Sydney Trains'
+                END)  
+            ELSE Entry_ETS_Operator
+        END)
+        as Apportioned_ETS_Operator,
         (fare_due-calculated_fee) as fare_due
     FROM data
     where data.entry_transaction_dtm +11/24 < trunc(sysdate,'DD') + 1 -0 - (select * from dow) +4/24 -- adjust weekly barrier here
@@ -1335,9 +1370,26 @@ daily_total as (
         data.entry_transaction_dtm +11/24 as day,
         token_id, 
         transit_account_id,
-        (CASE 
-            WHEN Entry_ETS_Operator = '45 - NSW TrainLink' or Exit_ETS_Operator = '45 - NSW TrainLink' THEN '45 - NSW TrainLink'
-            ELSE Entry_ETS_Operator END) as Apportioned_ETS_Operator,
+        -- Apply apportionment logic (same as in weekly_total)
+        (CASE WHEN Entry_ETS_Operator = 'Epping' OR Entry_ETS_Operator = 'Chatswood' THEN
+                (CASE WHEN Exit_ETS_Operator = '44 - Sydney Trains' THEN '44 - Sydney Trains'
+                    WHEN Exit_ETS_Operator = '37 - Metro Trains Sydney' THEN '37 - Metro Trains Sydney'
+                    WHEN Exit_ETS_Operator = '45 - NSW TrainLink' THEN '45 - NSW TrainLink'
+                    WHEN Exit_ETS_Operator = 'Epping' OR Exit_ETS_Operator = 'Chatswood' THEN
+                        (CASE WHEN Entry_ETS_Operator <> Exit_ETS_Operator THEN '37 - Metro Trains Sydney'
+                        ELSE '44 - Sydney Trains' -- Default Fare logic
+                        END)
+                    ELSE 'OPERATOR NOT FOUND'
+                END)
+            WHEN Entry_ETS_Operator = '37 - Metro Trains Sydney' THEN '37 - Metro Trains Sydney'
+            WHEN Entry_ETS_Operator = '45 - NSW TrainLink' THEN '45 - NSW TrainLink'
+            WHEN Entry_ETS_Operator = '44 - Sydney Trains' THEN
+                (CASE WHEN Exit_ETS_Operator = '45 - NSW TrainLink' THEN '45 - NSW TrainLink'
+                ELSE '44 - Sydney Trains'
+                END)  
+            ELSE Entry_ETS_Operator
+        END)
+        as Apportioned_ETS_Operator,
         (fare_due-calculated_fee) As Fare_Due
     FROM data
     where fare_due != 0
@@ -1372,27 +1424,27 @@ daily_cumul as (
 ),
 daily_report_detailed as (
     -- if capping value changes, change all hardcoded values.
-    -- current daily cap is $15.80
-    -- current sunday cap is $2.70
+    -- current daily cap is $16.10
+    -- current sunday cap is $2.80
     select 
         dc.*,
         (case 
             when business_day_of_the_week = 7 then
                 (case
-                    when running_daily_fare-270 >= fare_due then fare_due
-                    when running_daily_fare-270 < 0 then 0
-                    else running_daily_fare-270
+                    when running_daily_fare-280 >= fare_due then fare_due
+                    when running_daily_fare-280 < 0 then 0
+                    else running_daily_fare-280
                 end)
             else 
                 (case
-                    when running_daily_fare-1580 >= fare_due then fare_due
-                    when running_daily_fare-1580 < 0 then 0
-                    else running_daily_fare-1580
+                    when running_daily_fare-1610 >= fare_due then fare_due
+                    when running_daily_fare-1610 < 0 then 0
+                    else running_daily_fare-1610
                 end)
         end
         ) as refund_amount
     from daily_cumul dc
-    where day >= trunc(sysdate, 'dd')+4/24 - 1  and day < trunc(sysdate, 'dd')+4/24 - 0 -- date adjust here, -1, 0 is correct
+    where day >= trunc(sysdate, 'dd')+4/24 - 1 and day < trunc(sysdate, 'dd')+4/24 - 0 -- date adjust here, -1, 0 is correct
     and fare_due != 0
     order by token_id, day desc
 ),
@@ -1411,13 +1463,13 @@ daily_report as (
     order by token_id, transit_account_id
 ),
 weekly_report_detailed as (
-    -- current weekly cap is $63.20
+    -- current weekly cap is $50.00
     select 
         wc.*, 
         (case
-            when running_weekly_fare-6320 >= fare_due then fare_due
-            when running_weekly_fare-6320 < 0 then 0
-            else running_weekly_fare-6320
+            when running_weekly_fare-5000 >= fare_due then fare_due
+            when running_weekly_fare-5000 < 0 then 0
+            else running_weekly_fare-5000
         end) as refund_amount
     from weekly_cumul wc
     where fare_due != 0
@@ -1441,7 +1493,7 @@ adjustments_detailed as (
         transit_account_id,
         regexp_substr(reference_info, '[^-]+', 1, 1) as adjustment_Type,
         --regexp_substr(reference_info, '[^-]+$', 1, 1) as trip_id,  --replaced based on email from Michael (see line below)
-		regexp_replace(regexp_substr(reference_info, '[^-]+$', 1, 1),'\s+','') as trip_id,
+		regexp_replace(regexp_substr(reference_info, '[^-]+$', 1, 1),'\D', '') as trip_id,
         transaction_dtm+11/24 as transaction_dtm,
         transaction_amt,
         reference_info
