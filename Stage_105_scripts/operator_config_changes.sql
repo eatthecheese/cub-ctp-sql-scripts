@@ -4,7 +4,14 @@ Balance Threshold amount will increase from $3.73 to $4.80. This means the ABP w
 Default peak fare & Default off-peak fare will increase from $3.73 to $4.80. This means when there is a tap timeout for a Sydney Light Rail tap, the fare charged is now $4.80. This is because $4.80 is the new highest possible fare, i.e. FB3.
 */
 
+-- Update > 60mins before effective time, e.g. 2:50AM
 update abp_main.operator
-set HOLD_THRESHOLD_AMT = 480, DEFAULT_PEAK_FARE = 480, DEFAULT_OFFPEAK_FARE = 480
+set HOLD_THRESHOLD_AMT = 480
+where OPERATOR_ID = 10
+;
+
+-- Update 60 mins after effective time, e.g. 5:00AM
+update abp_main.operator
+set DEFAULT_PEAK_FARE = 480, DEFAULT_OFFPEAK_FARE = 480
 where OPERATOR_ID = 10
 ;
