@@ -124,7 +124,8 @@ data as (
         PAIDAMT,
         CAPAMT,
         CAPPINGCHECKEDFLAG,
-        DEFAULTFAREFLAG 
+        DEFAULTFAREFLAG,
+        sum (CALCULATEDFEE) over (partition by TOKENID order by ENTRYTRANSACTIONDTM, TOKENID) as ACCUMULATEDSAF
     from EMV.trip
     where 
         ENTRYTRANSACTIONDTM +11/24 >= (SELECT * FROM StartDate) +4/24 -0 --adjust data set left barrier here
@@ -160,7 +161,13 @@ weekly_total as (
             when rvt.ETSSUBSYSTEMID is not null then TO_CHAR(bso.ETSSUBSYSTEMID) || ' - ' || TO_CHAR(bso.ETSBUSOPERATORNAME)
             else 'No idea'
         end) as Apportioned_ETS_Operator,
-        (FAREDUE-CALCULATEDFEE) as FAREDUE
+        -- Check if SAF cap has reached, cap = $30.16 as of 2019Sep4
+        (case when tr.ACCUMULATEDSAF < 3016 then FAREDUE - CALCULATEDFEE
+            -- if SAF cap has just reached
+            when  tr.ACCUMULATEDSAF >= 3016 and (tr.ACCUMULATEDSAF - tr.CALCULATEDFEE) < 3016 then FAREDUE - (3016 - (tr.ACCUMULATEDSAF - tr.CALCULATEDFEE))
+            -- if SAF cap has reached prior
+            when tr.ACCUMULATEDSAF >= 3016 and (tr.ACCUMULATEDSAF - tr.CALCULATEDFEE) >= 3016 then FAREDUE
+        end) as FAREDUE
     FROM data tr
     left join emv.ETS_RAIL_APPORTIONMENT_MATRIX ram on (tr.ENTRYSTOPID = ram.ENTRYNLC and tr.EXITSTOPID = ram.EXITNLC)
     join emv.TAP tp on (tp.TAPID = tr.ENTRYTAPID)
@@ -185,7 +192,13 @@ daily_total as (
             when rvt.ETSSUBSYSTEMID is not null then TO_CHAR(bso.ETSSUBSYSTEMID) || ' - ' || TO_CHAR(bso.ETSBUSOPERATORNAME)
             else 'No idea'
         end) as Apportioned_ETS_Operator,
-        (FAREDUE-CALCULATEDFEE) as FAREDUE
+        -- Check if SAF cap has reached, cap = $30.16 as of 2019Sep4
+        (case when tr.ACCUMULATEDSAF < 3016 then FAREDUE - CALCULATEDFEE
+            -- if SAF cap has just reached
+            when  tr.ACCUMULATEDSAF >= 3016 and (tr.ACCUMULATEDSAF - tr.CALCULATEDFEE) < 3016 then FAREDUE - (3016 - (tr.ACCUMULATEDSAF - tr.CALCULATEDFEE))
+            -- if SAF cap has reached prior
+            when tr.ACCUMULATEDSAF >= 3016 and (tr.ACCUMULATEDSAF - tr.CALCULATEDFEE) >= 3016 then FAREDUE
+        end) as FAREDUE
     FROM data tr
     left join emv.ETS_RAIL_APPORTIONMENT_MATRIX ram on (tr.ENTRYSTOPID = ram.ENTRYNLC and tr.EXITSTOPID = ram.EXITNLC)
     join emv.TAP tp on (tp.TAPID = tr.ENTRYTAPID)
