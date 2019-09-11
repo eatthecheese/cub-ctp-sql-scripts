@@ -30,7 +30,7 @@ deny_list_detailed as (
         t3.NEXT_TRANSACTIONDTM,
         t3.NEXT_STOPID,
         t.DEFAULTFAREFLAG as DEFAULTFARE,
-        (t.FAREDUE-t.CALCULATEDFEE) as FAREDUE,
+        t.FAREDUE,
         (case when ram.apportionedoperatorid = '44' then '44 - Sydney Trains'
         when  ram.apportionedoperatorid = '45' then '45 - NSW Trainlink'
         when ram.apportionedoperatorid = '37' then '37 - Metro Trains Sydney'
